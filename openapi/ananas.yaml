@@ -1,0 +1,267 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Ananas API
+  description: Ananas API documentation
+servers:
+  - url: https://api.stage.ananastest.com
+# security:
+#   - BasicAuth: []
+paths:
+  /iam/api/v1/auth/token:
+    post:
+      summary: Get token
+      description: Get token description
+      requestBody:
+        description: Optional description
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Token"
+            examples:
+              token:
+                $ref: "#/components/examples/token"
+          application/xml:
+            schema:
+              $ref: "#/components/schemas/Token"
+            examples:
+              token:
+                $ref: "#/components/examples/token"
+      responses:
+        "200":
+          description: Successfully returned token
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TokenResponse"
+        "400":
+          $ref: "#/components/responses/400Error"
+        "500":
+          $ref: "#/components/responses/500Error"
+  /product/api/v1/merchant-integration/products:
+    get:
+      security:
+        - bearerAuth: []
+      summary: Get all products
+      description: Get all products description
+      requestBody:
+        description: Optional description
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Products"
+            # examples:
+            #   token:
+            #     $ref: '#/components/examples/token'
+          application/xml:
+            schema:
+              $ref: "#/components/schemas/Products"
+            # examples:
+            #   token:
+            #     $ref: '#/components/examples/token'
+
+      responses:
+        "200":
+          description: Successfully returned list of products
+          content:
+            application/json:
+              schema:
+                type: array
+                $ref: "#/components/schemas/ProductsResponse"
+        "400":
+          $ref: "#/components/responses/400Error"
+        "500":
+          $ref: "#/components/responses/500Error"
+
+    post:
+      security:
+        - bearerAuth: []
+      summary: Add or update product
+      description: Add or update product
+      requestBody:
+        description: Optional description
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Products"
+            # examples:
+            #   token:
+            #     $ref: '#/components/examples/token'
+          application/xml:
+            schema:
+              $ref: "#/components/schemas/Products"
+            # examples:
+            #   token:
+            #     $ref: '#/components/examples/token'
+
+      responses:
+        "200":
+          description: Successfully returned list of products
+          content:
+            application/json:
+              schema:
+                type: array
+                $ref: "#/components/schemas/ProductsResponse"
+        "400":
+          $ref: "#/components/responses/400Error"
+        "500":
+          $ref: "#/components/responses/500Error"
+components:
+  # securitySchemes:
+  #   BasicAuth:
+  #     type: http
+  #     scheme: basic
+  securitySchemes:
+    bearerAuth: # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  examples:
+    token:
+      value:
+        grantType: "CLIENT_CREDENTIALS"
+        clientId: "asdmgd1l2g67isfdlk"
+        clientSecret: "askldjdlgkjskmbkgfmk9hi99494gh743wjkerh239jr3995932jdwja="
+        scope: "public_api/full_access"
+      summary: Token example
+  schemas:
+    Token:
+      type: object
+      properties:
+        grantType:
+          type: string
+          description: Always "CLIENT_CREDENTIALS"
+        clientId:
+          type: string
+          description: client Id received from merchant portal
+        clientSecret:
+          type: string
+          description: client secret received from merchant portal
+        scope:
+          type: string
+          description: Always "public_api/full_access"
+    Products:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Product id
+        externalId:
+          type: integer
+          description: External id
+        ean:
+          type: string
+          description: Ean code
+        sku:
+          type: string
+          description: SKU
+        productName:
+          type: string
+          description: Product name
+        packageWeightValue:
+          type: number
+          description: Package weight value
+        packageWeightUnit:
+          # type: string
+          # description: Package weight unit
+          enum:
+            - "kg"
+            - "g"
+          default: "kg"
+        basePrice:
+          type: number
+          description: Base price
+        stockLevel:
+          type: number
+          description: Stock level
+        vat:
+          type: number
+          description: VAT
+
+    TokenResponse:
+      type: object
+      properties:
+        id_token:
+          type: string
+          description: Always null
+        access_token:
+          type: string
+          description: Access token
+        refresh_token:
+          type: string
+          description: Always null
+        expires_in:
+          type: string
+          description: Expire time in milicesonds
+        token_type:
+          type: string
+          description: Always "Bearer"
+    ProductsResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Id
+        externalId:
+          type: string
+          description: External id
+        ean:
+          type: string
+          description: Ean code
+        name:
+          type: string
+          description: Product name
+        description:
+          type: string
+          description: Description
+        brand:
+          type: string
+          description: Brand
+        sku:
+          type: string
+          description: Stock keeping unit
+        productType:
+          type: string
+          description: Product type
+        categories:
+          type: array
+          items:
+            type: string
+        basePrice:
+          type: number
+          description: Base price
+        vat:
+          type: number
+          description: VAT
+        stockLevel:
+          type: number
+          description: Stock level
+        packageWeightValue:
+          type: number
+          description: Package weight value
+        packageWeightUnit:
+          type: string
+          description: Package weight unit
+
+  responses:
+    400Error:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+    500Error:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string

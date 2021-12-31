@@ -12,10 +12,14 @@ export const theme = {
   //   medium: '900px',
   //   large: '1200px',
   // },
+  logo: {
+    width: '250px',
+    height: '70px'
+  },
   colors: {
     // tonalOffset: 0.2,
     primary: {
-      main: '#227a88',
+      main: '#fe5000',
       // light: ({ colors }) => lighten(colors.tonalOffset, colors.primary.main),
       // dark: ({ colors }) => darken(colors.tonalOffset, colors.primary.main),
       // contrastText: ({ colors }) => readableColor(colors.primary.main),
@@ -81,24 +85,40 @@ export const theme = {
       link: '#31bbb6',
       head: '#c167e4',
     },
-    // navbar: {
-    //   main: ({ colors }) => colors.primary.main,
-    //   gradient: ({ colors }) => darken(colors.tonalOffset / 2, colors.navbar.main),
-    //   contrastText: 'white'
-    // },
-    // footer: {
-      // main: ({ colors }) => colors.primary.main,
-      // contrastText: 'white'
-    // },
+    navbar: {
+      main: ({ colors }) => colors.primary.main,
+      // gradient: ({ colors }) => darken(colors.tonalOffset / 2, colors.navbar.main),
+      contrastText: 'white'
+    },
+    footer: {
+      main: ({ colors }) => colors.primary.main,
+      contrastText: 'white'
+    },
   },
 
   sidebar: {
-    backgroundColor: '#fafafa',
-    width: '260px',
+    backgroundColor: '#d6eaf8',
+  	activeBgColor: ' #3349ff',
+    width: '300px',
+  	textColor: '#000000',
+  	textColorSecondary: '#239b56',
+  	activeTextColor: '#ffffff',
+  	separatorLineColor: '#e67e22',
+  	separatorLabelColor: '#e67e22',
+  	rightLineColor: '#1e8449',
+  	caretColor: '#1e8449',
+  	fontFamily: '"Source Sans Pro", sans-serif',
+  	fontSize: '14px',
+  	spacing: {
+  	  unit: 10,
+  	  paddingHorizontal: 5,
+  	  paddingVertical: 5
+    }
   },
-  // tocPanel: {
-  //   width: '240px',
-  // },
+  tocPanel: {
+    width: '240px',
+    color: ({ colors }) => 'white',
+  },
 
   typography: {
     fontSize: '16px',
@@ -106,9 +126,9 @@ export const theme = {
     fontWeightRegular: '400',
     fontWeightBold: '600',
     fontWeightLight: '300',
-    fontFamily: '"Source Sans Pro", sans-serif',
+    fontFamily: 'sans-serif',
     headings: {
-      fontFamily: '"Source Sans Pro", sans-serif',
+      fontFamily: 'sans-serif',
       fontWeight: '600',
     },
     // heading1: {

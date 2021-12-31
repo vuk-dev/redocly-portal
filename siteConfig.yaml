@@ -1,5 +1,5 @@
 meta:
-  title: Redocly Training
+  title: Ananas portal
   description: The best API documentation generator ever.
   siteUrl: https://developer-portal-starter.redoc.ly
   keywords: redocly developer portal, api portal starter, api reference docs
@@ -9,30 +9,35 @@ linkChecker:
   options:
     CheckExternal: false
 logo:
-  image: ./images/logo.png
+  image: ./images/lol-logo.jpeg
   altText: Redocly Training
 toc:
   enable: true
 oasDefinitions:
   petstore: ./openapi/petstore.yaml
+  ananas: ./openapi/ananas.yaml
   # add links to definitions in our API registry by using a fully qualified URL.
 stylesheets:
   - https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&display=swap
   - https://fonts.googleapis.com/css?family=Source+Code+Pro:300,400,600,700&display=swap
 #analytics:
-  # ga:
-  # note that GA doesn't work in the development environment
-  #  trackingId: UA-45997213-1
+# ga:
+# note that GA doesn't work in the development environment
+#  trackingId: UA-45997213-1
 #scripts:
 #  - ./static/intercom.js
 nav:
-
-  - label: Training exercises
-    page: developer-portal/index.md
-
-  - label: External docs
+  - label: Tutorial
     icon: ./images/redocly-icon-white.png
-    href: https://redoc.ly/docs/developer-portal/introduction/
+    page: developer-portal/setup.md
+
+  - label: Platform
+    icon: ./images/redocly-icon-white.png
+    href: https://ananas.rs/
+
+  - label: API
+    icon: ./images/pineapple.png
+    href: /openapi/reference/overview/
 
   - search: true
 
@@ -42,11 +47,11 @@ footer:
     - group: Legal
       items:
         - label: Terms of Use
-          href: 'https://redoc.ly/subscription-agreement/'
+          href: "https://redoc.ly/subscription-agreement/"
         - label: Privacy Notice
-          href: 'https://redoc.ly/privacy-notice/'
+          href: "https://redoc.ly/privacy-notice/"
         - label: Cookie Notice
-          href: 'https://redoc.ly/cookie-notice/'
+          href: "https://redoc.ly/cookie-notice/"
     - group: Support
       items:
         - label: FAQ
